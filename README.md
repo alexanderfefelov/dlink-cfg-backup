@@ -14,6 +14,6 @@ You must have [Expect](http://expect.sourceforge.net/) installed.
 
 ### Backup switches from list
 
-* Edit `upload-cfgs.sh`: change USERNAME, PASSWORD and TFTP values.
+* Edit `upload-cfgs.sh`: change `USERNAME`, `PASSWORD` and `TFTP` values.
 * Edit `switches`: add your switches.
 * Run `upload-cfgs.sh`.
