@@ -10,7 +10,7 @@ You must have [Expect](http://expect.sourceforge.net/) installed.
 
 ### Backup one switch
 
-    upload-cfg.exp SWITCH_IP LOGIN PASSWORD TFTP_SERVER_IP
+    upload-cfg.exp SWITCH_IP USERNAME PASSWORD TFTP_SERVER_IP
 
 ### Backup switches from list
 
