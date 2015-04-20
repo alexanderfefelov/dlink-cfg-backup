@@ -1,0 +1,48 @@
+#!/usr/bin/expect
+
+if {[llength $argv] != 4} {
+  puts "usage: upload-cfg.exp IP USERNAME PASSWORD TFTP"
+  exit 1
+}
+
+set IP       [lindex $argv 0]
+set USERNAME [lindex $argv 1]
+set PASSWORD [lindex $argv 2]
+set TFTP     [lindex $argv 3]
+
+spawn telnet $IP
+set timeout 5
+expect {
+  "Name or service not known" {
+    puts "Name or service not known\r"
+    exit 1
+  }
+  "Invalid argument" {
+    puts "Invalid argument\r"
+    exit 1
+  }
+  -re {login:|username:|UserName:} {
+    # Got it!
+  }
+  timeout {
+    puts "Timed out\r"
+    exit 1
+  }
+}
+send "$USERNAME\r"
+expect -nocase {password:}
+send "$PASSWORD\r"
+expect {
+  {[#>]} {
+    # Got it!
+  }
+  timeout {
+    puts "Unable to log in\r"
+    exit 1
+  }
+}
+send "upload cfg_toTFTP $TFTP $IP.cfg\r"
+expect {[#>]}
+send "upload cfg_toTFTP $TFTP dest_file $IP.cfg\r"
+expect {[#>]}
+send "logout\r"
