@@ -41,13 +41,13 @@ expect {
     exit 1
   }
 }
+# DGS-3100 Series
+send "upload configuration $TFTP $IP.cfg\r"
+expect {[#>]}
 # DES-3200 Series rev. A1/B1, DES-3526, DGS-1210 Series
 send "upload cfg_toTFTP $TFTP $IP.cfg\r"
 expect {[#>]}
 # DES 3200 Series rev. C1, DGS-3120 Series, DGS-3420 Series, DGS-3610 Series, DGS-3620 Series
 send "upload cfg_toTFTP $TFTP dest_file $IP.cfg\r"
-expect {[#>]}
-# DGS-3100 Series
-send "upload configuration $TFTP $IP.cfg\r"
 expect {[#>]}
 send "logout\r"
