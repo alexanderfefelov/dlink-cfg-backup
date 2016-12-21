@@ -15,10 +15,14 @@ set timeout 5
 expect {
   "Name or service not known" {
     puts "Name or service not known\r"
+    close
+    wait
     exit 1
   }
   "Invalid argument" {
     puts "Invalid argument\r"
+    close
+    wait
     exit 1
   }
   -re {login:|username:|UserName:} {
@@ -26,6 +30,8 @@ expect {
   }
   timeout {
     puts "Timed out\r"
+    close
+    wait
     exit 1
   }
 }
@@ -38,6 +44,8 @@ expect {
   }
   timeout {
     puts "Unable to log in\r"
+    close
+    wait
     exit 1
   }
 }
@@ -51,4 +59,7 @@ expect {[#>]}
 send "upload cfg_toTFTP $TFTP dest_file $IP.cfg\r"
 expect {[#>]}
 send "logout\r"
+
+close
+wait
 exit
