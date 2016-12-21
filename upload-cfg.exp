@@ -51,3 +51,4 @@ expect {[#>]}
 send "upload cfg_toTFTP $TFTP dest_file $IP.cfg\r"
 expect {[#>]}
 send "logout\r"
+exit
