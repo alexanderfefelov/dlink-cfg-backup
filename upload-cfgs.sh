@@ -15,7 +15,7 @@ while read -r s; do
   [[ "$s" =~ ^#.*$ ]] && continue
   {
     date
-    "$HOME"/upload-cfg.exp "$s" $USERNAME $PASSWORD $TFTP
+    "$HOME"/upload-cfg.exp "${s//[$'\t\r\n ']}" $USERNAME $PASSWORD $TFTP
     echo --------------------------------------------------------------------------------
   } >> "$LOG"
 done < "$HOME"/switches
